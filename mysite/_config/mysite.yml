@@ -1,0 +1,10 @@
+---
+Name: myproject
+---
+SilverStripe\Core\Manifest\ModuleManifest:
+  project: mysite
+LeftAndMain:
+  extra_requirements_css:
+    - mysite/css/leftandmain-extra.css
+GridFieldPaginator:
+  default_items_per_page: 30
