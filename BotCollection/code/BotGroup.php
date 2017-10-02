@@ -4,6 +4,7 @@ use SilverStripe\ORM\DataObject;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Forms\ReadonlyField;
 use SilverStripe\Forms\CompositeField;
+use SilverStripe\ORM\ArrayList;
 
 class BotGroup extends DataObject
 {
@@ -38,14 +39,26 @@ class BotGroup extends DataObject
     	return $this->aTitle . ' vs ' . $this->dTitle;
     }
 
-    public function getAutobots(){
-    	$bots = $this->Characters()->Filter('Faction','Autobot')->map();
-    	return  $bots->Count() . ': ' . implode(", ", $bots->toArray());
+    public function BotList($faction){
+    	$bots = $this->Characters()->Filter('Faction',$faction);
+    	$mine = $this->Collection()->Characters()->map()->toArray();
+    	$extras = $bots->filter('ID:not',array_keys($mine));
+    	$list = [];
+   		foreach( $bots as $b ){
+    		$list[$b->ID] = $b->Title;
+    	}
+    	foreach( $extras as $b ){
+    		$list[$b->ID] = $b->Title . "*";
+    	}
+
+    	return count($list) . ': ' . implode(", ", $list);
     }
 
+	public function getAutobots(){
+    	return $this->BotList("Autobot");
+    }
     public function getDecepticons(){
-    	$bots = $this->Characters()->Filter('Faction','Decepticon');
-    	return  $bots->Count() . ': ' . implode(", ", $bots->map()->toArray());
+    	return $this->BotList("Decepticon");
     }
 
     public function getCMSFields(){

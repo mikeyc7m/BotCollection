@@ -2,9 +2,7 @@
 
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Security\Member;
-use SilverStripe\Forms\GridField\GridFieldConfig_RelationEditor;
-use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
-use SilverStripe\Forms\GridField\GridFieldSortableHeader;
+use SilverStripe\Dev\Debug;
 
 class Collection extends DataObject
 {
@@ -42,7 +40,9 @@ class Collection extends DataObject
     	$fields = parent::getCMSFields();
 
     	if( $field = $fields->dataFieldByName('BotGroups') ){
-    		// sorting?
+    		$foo = $field->getConfig();
+    		$fee = $foo->getComponentByType('SilverStripe\Forms\GridField\GridFieldSortableHeader');
+    		//$fee->setFieldSorting(['Title'=>'aTitle']);
     	}
 
     	return $fields;
