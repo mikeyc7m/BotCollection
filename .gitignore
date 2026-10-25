@@ -9,3 +9,4 @@
 /react/
 /.env.example
 /.graphql-generated/
+/backups/
