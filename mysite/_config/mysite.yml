@@ -1,0 +1,56 @@
+---
+Name: myproject
+---
+SilverStripe\Core\Manifest\ModuleManifest:
+  project: mysite
+
+SilverStripe\Admin\LeftAndMain:
+  extra_requirements_css:
+    - mysite/css/leftandmain-extra.css
+
+SilverStripe\Forms\GridField\GridFieldPaginator:
+  default_items_per_page: 25
+SilverStripe\Admin\ModelAdmin:
+  page_length: 25
+
+SilverStripe\Control\Director:
+  rules:
+    'graphql': '%$SilverStripe\GraphQL\Controller.default'
+
+SilverStripe\GraphQL\Controller:
+  cors:
+    Enabled: true
+    Allow-Origin: '*'
+    Allow-Headers: 'Authorization, Content-Type'
+    Allow-Methods:  'GET, POST, OPTIONS'
+    Allow-Credentials: 'true'
+    Max-Age:  600  # 600 seconds = 10 minutes.
+
+SilverStripe\GraphQL\Manager:
+  schemas:
+    default:
+      scaffolding:
+        types:
+          SilverStripe\Assets\File:
+            fields: [ID, Name, URL, Filename, AbsoluteURL]
+            operations:
+              read: true
+
+---
+Name: frontend_config
+---
+SilverStripe\ORM\DataObject:
+  extensions:
+    - EditableExtension
+---
+Name: approutes
+After:
+  - '#rootroutes'
+  - '#coreroutes'
+---
+SilverStripe\Control\Director:
+  rules:
+    'frontendedit//$Action!/$ID/$OtherID': 'EditableController'
+    'frontendedit/$Action!': 'EditableController'
+    'update//$Action!' : 'DraggableController'
+

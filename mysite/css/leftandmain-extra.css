@@ -1,0 +1,95 @@
+td.col-ImageThumb {
+    padding: 0;
+}
+
+td.col-ImageThumb img {
+    width: 52px;
+    height: auto;
+}
+
+.ss-gridfield-editable td.col-ImageThumb {
+    padding-top: 0.5rem;
+}
+
+.ss-gridfield-editable td {
+    vertical-align: middle;
+}
+.ss-gridfield-editable td p {
+    margin: 0;
+}
+
+fieldset.use-grid-layout table thead {
+    display: none;
+}
+
+fieldset.use-grid-layout table tbody {
+    margin: 1.5385rem;
+    gap: 8px;
+}
+
+fieldset.use-grid-layout table tbody, fieldset.use-grid-layout tbody tr {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+fieldset.use-grid-layout tbody tr {
+    flex-direction: column;
+    position: relative;
+    width: 112px;
+    background: white;
+}
+
+fieldset.use-grid-layout tbody tr td {
+    padding: 6px;
+    border: 0;
+    font-size: 0.825rem;
+}
+
+fieldset.use-grid-layout tbody td:first-child {
+    padding: 6px;
+    padding-bottom: 0;
+}
+
+fieldset.use-grid-layout tbody tr td:nth-child(2) {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 110px;
+    padding-left: 0;
+    font-size: 0.825rem;
+    text-align: center;
+}
+
+fieldset.use-grid-layout tbody tr:first-child td {
+    border-top: 0;
+}
+
+fieldset.use-grid-layout tbody td.action-menu {
+    position: absolute;
+    bottom: 0;
+    right: 6px;
+    z-index: 1;
+    border-bottom: 0;
+}
+
+.fieldgroup--fill-width > div {
+    flex: 1 1 auto;
+    max-width: unset;
+}
+.fieldgroup--fill-width > div > * {
+    padding: 0!important;
+    gap: 10px;
+}
+.fieldgroup--fill-width.form-group > label {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.fieldgroup--fill-width.form-group .form-group {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+.field.optionset.inline-optionset div.form-check {
+    display: inline-block;
+    margin-right: 2rem;
+}

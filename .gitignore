@@ -1,0 +1,11 @@
+/silverstripe-cache/
+/.env
+/vendor/
+/themes/simple/
+/resources/
+/_graphql/
+/.idea/
+/assets/
+/react/
+/.env.example
+/.graphql-generated/

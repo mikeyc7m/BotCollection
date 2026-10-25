@@ -1,0 +1,47 @@
+---
+Name: BotCollection
+---
+Member:
+  extensions:
+    - BotMember_Extension
+
+SilverStripe\Assets\InterventionBackend:
+  flush_enabled: false
+
+SilverStripe\ORM\FieldType\DBForeignKey:
+  dropdown_field_threshold: 200
+
+SilverStripe\Core\Injector\Injector:
+  Psr\Log\LoggerInterface:
+    calls:
+      LogFileHandler: [ pushHandler, [ '%$LogFileHandler' ] ]
+  LogFileHandler:
+    class: Monolog\Handler\StreamHandler
+    constructor:
+      - "../silverstripe.log"
+      - "info"
+
+SilverStripe\GraphQL\Manager:
+  schemas:
+    default:
+      scaffolding:
+        types:
+          BotImage:
+            fields: [ID, Title, ThumbURL, HeroURL, Image]
+            operations:
+              read: true
+          Character:
+            fields: '*'
+            operations:
+              read:
+                paginate: false
+            nestedQueries:
+              BotImages:
+                paginate: false
+          Collection:
+            fields: '*'
+            operations:
+              read: true
+            nestedQueries:
+              Characters:
+                paginate: false

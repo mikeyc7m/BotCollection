@@ -1,0 +1,21 @@
+---
+Name: payment
+---
+SilverStripe\Omnipay\Model\Payment:
+  allowed_gateways:
+    - 'PayPal_Express'
+    - 'PaymentExpress_PxPay'
+#    - 'Scalapay'
+    - 'Manual'
+
+SilverStripe\Omnipay\GatewayInfo:
+  PayPal_Express:
+    parameters:
+      testMode: true
+  Scalapay:
+    parameters:
+      testMode: true
+      username: 'test@scalapay.it'
+      password: '12345678'
+  Manual:
+    is_manual: true
